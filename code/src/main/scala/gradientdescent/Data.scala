@@ -28,6 +28,7 @@ object Data {
   def create(count: Int, xStart: Double, xStop: Double, variance: Double)(
       f: Double => Double
   ): List[Point] =
+    val rnd = Random.setSeed(1234567)
     List.fill(count) {
       val x = Random.between(xStart, xStop)
       val noise = Random.nextGaussian() * variance
@@ -39,4 +40,8 @@ object Data {
   /** Example data set for f(x) = 75 sin(x) */
   val sineData =
     create(40, -6.0, 6.0, 5.0)(x => 75 * Math.sin(x))
+
+  val cubicData =
+    create(40, -4.0, 4.0, 8.0)(x => Math.pow(x, 3) * 2)
+
 }
